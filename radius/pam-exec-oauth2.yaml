@@ -1,0 +1,9 @@
+{
+    client-id: "svc-radius-auth",
+    client-secret: "8721e497-4a18-40a2-822f-a847c6d17632",
+    redirect-url: "urn:ietf:wg:oauth:2.0:oob",
+    scopes: ["email"],
+    endpoint-auth-url: "http://localhost:8180/auth/realms/radiusdemo/protocol/openid-connect/auth",
+    endpoint-token-url: "http://localhost:8180/auth/realms/radiusdemo/protocol/openid-connect/token",
+    username-format: "%s",
+}
