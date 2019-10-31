@@ -24,11 +24,6 @@ RUN echo "Enable PAM module" && \
     sed -i 's/#\s*pam/	pam/' /etc/freeradius/sites-enabled/default && \
     sed -i 's/#\s*pam/	pam/' /etc/freeradius/sites-enabled/inner-tunnel
 
-RUN echo "Enable PAM debugging" && \
-    touch /etc/pam_debug && \
-    echo '*.debug /var/log/debug.log' >> /etc/rsyslog.conf && \
-    test ! -f /var/log/debug.log && touch /var/log/debug.log
-
 RUN echo "# Instruct FreeRADIUS to use PAM to authenticate users"  >> /etc/freeradius/users && \
     echo "DEFAULT Auth-Type := PAM" >> /etc/freeradius/users && \
     sed -i "s/\s*secret\s*=\s*testing123/secret = $RADIUS_SECRET/" /etc/freeradius/clients.conf && \
@@ -37,5 +32,5 @@ RUN echo "# Instruct FreeRADIUS to use PAM to authenticate users"  >> /etc/freer
     echo "Configuring pam-exec-oauth2 PAM module" && \
     chmod 755 $OAUTH_PAM_PREFIX/pam-exec-oauth2 && \
     chmod 600 $OAUTH_PAM_PREFIX/pam-exec-oauth2.yaml
-    
+
 COPY pam/radiusd /etc/pam.d/radiusd

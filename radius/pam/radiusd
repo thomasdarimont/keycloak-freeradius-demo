@@ -11,6 +11,6 @@
 #@include common-session
 
 account required                        pam_permit.so
-auth	[success=1 default=ignore]      pam_exec.so debug   expose_authtok	log=/var/log/freeradius/pam.log	/opt/pam-exec-oauth2/pam-exec-oauth2 --debug
+auth	[success=1 default=ignore]      pam_exec.so     expose_authtok  log=/var/log/freeradius/pam.log	/opt/pam-exec-oauth2/pam-exec-oauth2
 auth    requisite                       pam_deny.so
 auth    required                        pam_permit.so
