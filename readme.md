@@ -85,8 +85,4 @@ Received Access-Accept Id 139 from 127.0.0.1:1812 to 127.0.0.1:47297 length 20
 
 # Issues
 
-## Radius users needs to have unix accounts
-The current configuration requires that a radius user has an existing unix account.
-For the sake of the example we create a `tester` user in the `Dockerfile`.
-
-I'm still looking for the proper `PAM` configuration to not require unix accounts for radius users.
+No known issues so far.

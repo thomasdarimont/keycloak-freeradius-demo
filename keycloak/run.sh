@@ -12,7 +12,7 @@ docker run \
   -p 8180:8180 \
   -v `pwd`/data:/opt/jboss/keycloak/data \
   -v `pwd`/radiusdemo-realm.json:/opt/jboss/keycloak/radiusdemo-realm.json \
-  -it jboss/keycloak:5.0.0 \
+  -it jboss/keycloak:6.0.1 \
   -b 0.0.0.0 \
   -Djboss.http.port=8180 \
   -Dkeycloak.migration.action=import \

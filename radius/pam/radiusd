@@ -1,0 +1,16 @@
+#
+# /etc/pam.d/radiusd - PAM configuration for FreeRADIUS
+#
+
+# We fall back to the system default in /etc/pam.d/common-*
+#
+
+#@include common-auth
+#@include common-account
+#@include common-password
+#@include common-session
+
+account required                        pam_permit.so
+auth	[success=1 default=ignore]      pam_exec.so     expose_authtok  log=/var/log/freeradius/pam.log	/opt/pam-exec-oauth2/pam-exec-oauth2
+auth    requisite                       pam_deny.so
+auth    required                        pam_permit.so
