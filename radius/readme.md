@@ -59,7 +59,7 @@ less /etc/freeradius/clients.conf
 
 Edit the user configuration file /etc/raddb/users, changing DEFAULT Auth-Type = System to DEFAULT Auth-Type = pam for using PAM modules for user authentication.
 
-
+```
 docker run \
    -d \
    --name my-radius \
@@ -87,6 +87,8 @@ Response: {"error":"invalid_grant","error_description":"Invalid user credentials
 (0) pam: ERROR: PAM conversation failed
 (0) pam: ERROR: /opt/pam-exec-oauth2/pam-exec-oauth2xxx failed: exit code 2
 (0) pam: ERROR: pam_authenticate failed: Authentication failure
+```
 
-
+# Links 
+PAM-authentication-not-working
 http://freeradius.1045715.n5.nabble.com/PAM-authentication-not-working-td5718096.html
