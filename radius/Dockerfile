@@ -1,4 +1,4 @@
-FROM freeradius/freeradius-server:3.0.18
+FROM freeradius/freeradius-server:3.0.25
 
 ENV OAUTH_PAM_PREFIX /opt/pam-exec-oauth2
 ENV RADIUS_SECRET bubu123
@@ -6,12 +6,12 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # Note those tools are just used for debugging and could be removed
 RUN apt-get update && \
-    apt-get install -y less
+    apt-get install vim -y
 
 # Install OAuth2 PAM Module
 # --chown=freerad:freerad 
-COPY --chown=freerad:freerad pam-exec-oauth2 $OAUTH_PAM_PREFIX/pam-exec-oauth2
-COPY --chown=freerad:freerad pam-exec-oauth2.yaml $OAUTH_PAM_PREFIX/pam-exec-oauth2.yaml
+COPY --chown=freerad:freerad pam-exec-oauth2-novo $OAUTH_PAM_PREFIX/pam-exec-oauth2
+COPY --chown=freerad:freerad pam-exec-oauth2.yaml $OAUTH_PAM_PREFIX/default.yaml
 
 COPY --chown=freerad:freerad clients.conf /etc/freeradius/clients.conf
 
@@ -31,6 +31,6 @@ RUN echo "# Instruct FreeRADIUS to use PAM to authenticate users"  >> /etc/freer
 #    echo "client client144x {\n  ipaddr = 144.0.0.0/8\n  secret = $RADIUS_SECRET\n}" >> /etc/freeradius/clients.conf && \
     echo "Configuring pam-exec-oauth2 PAM module" && \
     chmod 755 $OAUTH_PAM_PREFIX/pam-exec-oauth2 && \
-    chmod 600 $OAUTH_PAM_PREFIX/pam-exec-oauth2.yaml
+    chmod 600 $OAUTH_PAM_PREFIX/default.yaml
 
 COPY pam/radiusd /etc/pam.d/radiusd
