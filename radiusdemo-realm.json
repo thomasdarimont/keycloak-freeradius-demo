@@ -254,6 +254,7 @@
         "id" : "32d4cb85-d443-45c6-ba3d-2eb2cd3cdd62",
         "name" : "manage-account",
         "description" : "${role_manage-account}",
+        
         "composite" : true,
         "composites" : {
           "client" : {

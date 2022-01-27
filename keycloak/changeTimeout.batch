@@ -1,0 +1,7 @@
+embed-server --std-out=echo --server-config=standalone-ha.xml
+batch
+/system-property=jboss.as.management.blocking.timeout:add(value=900)
+/subsystem=deployment-scanner/scanner=default:write-attribute(name=deployment-timeout,value=900)
+/subsystem=transactions:write-attribute(name=default-timeout,value=900)
+run-batch
+stop-embedded-server

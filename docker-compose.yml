@@ -1,0 +1,30 @@
+services:
+  freeradius:
+    network_mode: host
+    container_name: freeradius
+    build:
+      context: ./radius
+    ports:
+        - '1812-1813:1812-1813/udp'
+    image: freeradius
+    command: ["radiusd", "-X", "-t"] # Debug mode with colour
+
+  keycloak:
+    image: keycloak
+    container_name: keycloak
+    build:
+      context: ./keycloak
+    ports:
+      - "8080:8080"
+      - "9990:9990"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+      KEYCLOAK_LOGLEVEL: DEBUG
+      DB_VENDOR: mariadb
+      DB_ADDR: 34.133.21.210
+      DB_DATABASE: keycloak
+      DB_USER: keycloak_iam
+      DB_PASSWORD: Su4O8wL7NkLeQraM

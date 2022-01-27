@@ -1,0 +1,24 @@
+CREATE DATABASE keycloak CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+docker build -t keycloak -f Dockerfile .
+docker run --add-host host.docker.internal:host-gateway -p 8080:8080 -p 9990:9990 -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admin -e KEYCLOAK_LOGLEVEL=DEBUG -e DB_VENDOR=mariadb keycloak
+
+
+
+https://github.com/vzakharchenko/keycloak-radius-plugin/blob/master/docker/README.md
+https://hub.docker.com/r/jboss/keycloak/
+https://keycloak.discourse.group/t/rest-api-create-user-no-user-identifier-in-response/1964/8
+ldapsearch -H ldap://localhost:10389 -x -b "ou=people,dc=planetexpress,dc=com" -D "cn=admin,dc=planetexpress,dc=com" -w GoodNewsEveryone "(objectClass=inetOrgPerson)" 
+
+
+docker rmi $(docker images -q)
+
+https://documentation.abas.cloud/en/abas-keycloak/setup-user-federation-ldap.html
+https://geek-cookbook.funkypenguin.co.nz/recipes/keycloak/authenticate-against-openldap/
+docker pull rroemhild/test-openldap
+docker run -it -p 10389:10389 -p 10636:10636 rroemhild/test-openldap
+
+
+docker build -t freeradius -f Dockerfile .
+./run.sh 
+docker exec -it my-radius /bin/bash
