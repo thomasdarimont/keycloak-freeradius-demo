@@ -1,12 +1,12 @@
 FROM jboss/keycloak:16.1.0
-COPY --chown=jboss ./changeTimeout.batch /tmp/changeTimeout.batch
+#COPY --chown=jboss ./changeTimeout.batch /tmp/changeTimeout.batch
 
-RUN cd $JBOSS_HOME \
-  && ./bin/jboss-cli.sh --file=/tmp/changeTimeout.batch \
-  && rm -rf $JBOSS_HOME/standalone/configuration/standalone_xml_history \
-  && rm -rf $JBOSS_HOME/standalone/data \
-  && rm -rf $JBOSS_HOME/standalone/tmp \
-  && rm -rf /tmp/changeTimeout.batch
+#RUN cd $JBOSS_HOME \
+# && ./bin/jboss-cli.sh --file=/tmp/changeTimeout.batch \
+#  && rm -rf $JBOSS_HOME/standalone/configuration/standalone_xml_history \
+#  && rm -rf $JBOSS_HOME/standalone/data \
+#  && rm -rf $JBOSS_HOME/standalone/tmp \
+#  && rm -rf /tmp/changeTimeout.batch
   
 
 ARG DB_VENDOR
