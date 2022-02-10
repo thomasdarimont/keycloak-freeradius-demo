@@ -11,7 +11,7 @@ COPY --chown=freerad:freerad pam-exec-oauth2.yaml $OAUTH_PAM_PREFIX/default.yaml
 
 COPY --chown=freerad:freerad clients.conf /etc/freeradius/clients.conf
 RUN chmod 0640  /etc/freeradius/clients.conf
-
+RUN apt-get update && apt-get install -y vim
 # Add OAuth2 PAM Module as allowed login mechanism
 RUN echo "Enable PAM module" && \
     cd /etc/freeradius/mods-enabled && \
